@@ -1,0 +1,21 @@
+.navigation-bar{
+    background-color: #282c34;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+    position:top;
+    height: 4vmax;
+}
+.menu-button {
+    background-color: #4a515e;
+    padding-left: 1vmax;
+    padding-right: 1vmax;
+    padding: 0.5vmin;
+    display: flex;
+    flex-direction: row;
+    align-items:flex-end;
+    justify-content: center;
+    font-size: 1vmin;
+    color: white;
+    
+}
