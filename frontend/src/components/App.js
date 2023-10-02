@@ -5,7 +5,7 @@ import NavBar from "./NavBar.js";
 import { Box, Container, Grid, Item, Typography, Button } from "@mui/material";
 import Av from '../images/glogan_av.png';
 import Av2 from '../images/glogan_av2.jpg';
-import Contact from './Contact'
+import Contact from './Contact';
 import Projects from './Comments'
 import Comments from './Projects'
 import Main from './Main'
@@ -33,6 +33,7 @@ function App() {
   return (
     <div className="App">
       <NavBar/>
+      <div className="App-padding"></div>
       <BrowserRouter>
         <Routes>
             <Route exact path="/" element={Main}></Route>

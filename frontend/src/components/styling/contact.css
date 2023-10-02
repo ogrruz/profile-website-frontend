@@ -1,11 +1,13 @@
 @import-normalise;
 
 body, html {
+    height: 100%;
     margin: 0;
     padding: 0;
+    background-color: black;
   }
 
-.Cv {
+.Contact {
     text-align: center;
     background-color: black;
     background-image: url("../../images/wood_background.jpg");
