@@ -1,0 +1,88 @@
+@import-normalise;
+
+@font-face {
+    font-family: 'Roboto';
+    src: url(./fonts/Roboto_Mono/static/RobotoMono-Light.ttf) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+.Main {
+    
+}
+
+.MuiGrid-root {
+  /* padding-top: 5vmax; */
+  z-index: 0;
+  padding-top: 1vmax;
+  /* padding-bottom: 20vmax; */
+}
+
+.MuiGrid-root-2 {
+  padding-top: 1vmax;
+  z-index: 0;
+  /* padding-bottom: 20vmax; */
+}
+
+.MuiGrid-root-3 {
+  padding-top: 1vmax;
+  z-index: 0;
+  /* padding-bottom: 20vmax; */
+}
+
+.Main-av {
+  /*width: 100px; /* Adjust the width as needed */
+  /*height: 100px; /* Adjust the height as needed */
+  border: 2px solid #007bff; /* Border color and thickness */
+  border-radius: 50%; /* Make it circular */
+  overflow: hidden; /* Hide overflow content (for large images) */
+  display: inline-block; /* To ensure the container doesn't expand */
+
+  /* Optional: Add padding to create space around the image */
+  padding: 5px;
+}
+
+.Main-av-image {
+  width: 250px; /* Ensure the image fills the container */
+  height: auto; /* Maintain aspect ratio */
+  display: block;
+}
+
+
+.Main_welcome_text {
+  /*font-variant: small-caps; */
+  font-style: normal;
+  font-family: 'Roboto', monospace;
+  text-align: justify;
+}
+
+.Main_welcome_text_2 {
+    /*font-variant: small-caps; */
+    font-style: normal;
+    font-family: 'Roboto', monospace;
+    text-align: left;
+  }
+
+.Grid_background{
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 20px;
+  z-index: 0;
+  border: 2px solid #00356a;
+}
+
+.Main-padding {
+  padding-bottom: 2vmax;
+}
+
+.MuiButton-root {
+    margin-left: 1vmax;
+    font-family: 'inherit-the-font-for-buttons';
+}
