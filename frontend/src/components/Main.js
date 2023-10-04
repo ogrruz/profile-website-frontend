@@ -51,7 +51,7 @@ function Main(){
                 <h5>
                   Welcome to my profile website! I'm a junior software engineer looking to dive into the software industry.
                   This website serves as a project to test and demonstrate my familiarity with basic aspects of full-stack developlment.
-                  It's built through a combination of Spring Boot back-end and ReactJs front end.
+                  It's built through a combination of Spring Boot back-end, ReactJs front end and PostgreSQL database.
                 </h5>
                 <h5>
                   Please feel free to look around. You can find the code for this website at the Projects endpoint. 
@@ -80,7 +80,7 @@ function Main(){
         <div className="Main-padding"></div>
 
         <div className="Grid_background">
-          <Grid xs={5} className='' color={"white"} paddingLeft={'5vmax'}>
+          <Grid color={"white"} paddingLeft={'5vmax'}>
           < Typography className="Main_welcome_text_2" color={"white"}>
             <h2 style={{color: '#007bff'}}>
               Contact Me

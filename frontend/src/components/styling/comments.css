@@ -1,0 +1,50 @@
+
+.MuiGrid-root {
+    /* padding-top: 5vmax; */
+    z-index: 0;
+    padding-top: 1vmax;
+    /* padding-bottom: 20vmax; */
+  }
+  
+  .MuiGrid-root-2 {
+    padding-top: 1vmax;
+    z-index: 0;
+    /* padding-bottom: 20vmax; */
+  }
+  
+  .MuiGrid-root-3 {
+    padding-top: 1vmax;
+    z-index: 0;
+    /* padding-bottom: 20vmax; */
+  }
+
+  .Comments_welcome_text {
+    /*font-variant: small-caps; */
+    font-style: normal;
+    font-family: 'Roboto', monospace;
+    text-align: justify;
+  }
+  
+  .Comments_welcome_text_2 {
+      /*font-variant: small-caps; */
+      font-style: normal;
+      font-family: 'Roboto', monospace;
+      text-align: left;
+    }
+  
+  .Grid_background{
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 20px;
+    z-index: 0;
+    border: 2px solid #00356a;
+  }
+  
+  .Comments-padding {
+    padding-bottom: 2vmax;
+  }
+  
+  .MuiButton-root {
+      margin-left: 1vmax;
+      font-family: 'inherit-the-font-for-buttons';
+  }

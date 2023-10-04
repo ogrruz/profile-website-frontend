@@ -6,8 +6,8 @@ import { Box, Container, Grid, Item, Typography, Button } from "@mui/material";
 import Av from '../images/glogan_av.png';
 import Av2 from '../images/glogan_av2.jpg';
 import Contact from './Contact';
-import Projects from './Comments'
-import Comments from './Projects'
+import Projects from './Projects'
+import Comments from './Comments'
 import Main from './Main'
 
 function handleDownload() { 
