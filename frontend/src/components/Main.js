@@ -31,6 +31,11 @@ function handleViewCV() {
 }
 
 function Main(){
+
+  const email = process.env.REACT_APP_EMAIL;
+  const phone = process.env.REACT_APP_PHONE;
+  const linkedin = process.env.REACT_APP_LINKEDIN;
+
     return (
       <Container>
         <div className="Grid_background">
@@ -40,10 +45,10 @@ function Main(){
                 <h1 >
                   Hi,I'm Garry Logan
                 </h1>
-                <h2 >
+                <h2 style={{color: '#007bff'}}>
                   Junior Software Developer
                 </h2>
-                <h5 >
+                <h5>
                   Welcome to my profile website! I'm a junior software engineer looking to dive into the software industry.
                   This website serves as a project to test and demonstrate my familiarity with basic aspects of full-stack developlment.
                   It's built through a combination of Spring Boot back-end and ReactJs front end.
@@ -77,12 +82,22 @@ function Main(){
         <div className="Grid_background">
           <Grid xs={5} className='' color={"white"} paddingLeft={'5vmax'}>
           < Typography className="Main_welcome_text_2" color={"white"}>
-            <h2>
+            <h2 style={{color: '#007bff'}}>
               Contact Me
             </h2>
             <h5>
-              You may contact me using the following methods:
+              You may contact me via the following:
             </h5>
+            <h5>
+              Email: {email}
+            </h5>
+            <h5>
+              Mobile: {phone}
+            </h5>
+            <h5>
+              LinkedIn: <a href={linkedin}>linkedin.com/in/garry-logan-55aa25249</a>
+            </h5>
+            
           </Typography>
           </Grid>
           

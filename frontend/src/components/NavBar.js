@@ -37,6 +37,8 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
+  let url = "";
+
   return (
     <AppBar position="static" style={{background: 'black'}}>
       <Container maxWidth="xl">
@@ -126,7 +128,12 @@ function ResponsiveAppBar() {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'monospace', fontSize: "16px"}}
+                sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none'}}
+                href={`/${page}`}
               >
                 {page}
               </Button>
