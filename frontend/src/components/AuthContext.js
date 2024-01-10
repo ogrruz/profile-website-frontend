@@ -1,7 +1,5 @@
 import { createContext, useContext, useState } from 'react';
 
-import React, { createContext, useContext, useState } from 'react';
-
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
@@ -22,7 +20,7 @@ function AuthProvider({ children }) {
   );
 }
 
-function useAuth() {
+const useAuth = () => {
   return useContext(AuthContext);
 }
 

@@ -1,14 +1,14 @@
 import "./App.css"
-import {BrowserRouter as Router,Routes, Route, Link, BrowserRouter, Switch} from "react-router-dom";
+import {BrowserRouter as Router,Routes, Route, BrowserRouter} from "react-router-dom";
 
 import NavBar from "./NavBar.js";
-import { Box, Container, Grid, Item, Typography, Button } from "@mui/material";
-import Av from '../images/glogan_av.png';
-import Av2 from '../images/glogan_av2.jpg';
 import Contact from './Contact';
 import Projects from './Projects'
 import Comments from './Comments'
 import Main from './Main'
+import Register from './Register.js';
+import Login from './Login.js';
+import { AuthProvider } from "./AuthContext.js";
 
 function handleDownload() { 
   const pdfPath = process.env.PUBLIC_URL + 'Garry_Logan_CV.pdf'
@@ -34,15 +34,16 @@ function App() {
     <div className="App">
       <NavBar/>
       <div className="App-padding"></div>
-      <BrowserRouter>
-        <Routes>
-            <Route exact path="/" element={Main}></Route>
-            <Route exact path='/Contact' element={Contact}></Route>
-            <Route exact path='/Projects' element={Projects}></Route>
-            <Route exact path='/Comments' element={Comments}></Route>
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+          <Route exact path="/" element={Main}></Route>
+          <Route exact path='/Contact' element={Contact}></Route>
+          <Route exact path='/Projects' element={Projects}></Route>
+          <Route exact path='/Comments' element={Comments}></Route>
+          <Route exact path='/Login' element={Login}></Route>
+          <Route exact path='/Register' element={Register}></Route>
+      </Routes>
     </div>
+    
     
   );
 }

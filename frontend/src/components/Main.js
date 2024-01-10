@@ -92,10 +92,7 @@ function Main(){
               Email: {email}
             </h5>
             <h5>
-              Mobile: {phone}
-            </h5>
-            <h5>
-              LinkedIn: <a href={linkedin}>linkedin.com/in/garry-logan-55aa25249</a>
+              LinkedIn: <a href={linkedin}>linkedin.com/in/garry-logan/</a>
             </h5>
             
           </Typography>

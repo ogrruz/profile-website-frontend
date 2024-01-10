@@ -7,18 +7,21 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu'; // this
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import Av from '../images/glogan_av.png';
 import HomeIcon from '@mui/icons-material/Home';
+import PersonIcon from '@mui/icons-material/Person';
+
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthContext';
 
 const pages = [ 'Projects','Comments'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Account', 'Logout'];
 
 function ResponsiveAppBar() {
+  const { jwtToken, logout } = useAuth();
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -46,7 +49,7 @@ function ResponsiveAppBar() {
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           {/* <img src={Av} alt="Avatar" style={{ display: { xs: 'none', md: 'flex' }, marginRight: 1, width: '48px', height: '48px' }}/> */}
           <a href='/'>
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <IconButton sx={{ p: 0 }}>
               <HomeIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color: 'White' }} />
             </IconButton>
           </a>
@@ -143,7 +146,8 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> **/}
+                <PersonIcon fontSize='large' style={{color: 'white'}}/>
               </IconButton>
             </Tooltip>
             <Menu
@@ -162,11 +166,18 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {jwtToken ? (
+                settings.map((setting) => (
+                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{setting}</Typography>
+                  </MenuItem>
+                ))
+              ) : (
+                <MenuItem onClick={ () => {handleCloseUserMenu(); navigate('/Register')}}>
+                  <Typography textAlign="center">Log in</Typography>
                 </MenuItem>
-              ))}
+              )}
+              
             </Menu>
           </Box>
         </Toolbar>
