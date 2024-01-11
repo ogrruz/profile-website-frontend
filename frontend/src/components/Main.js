@@ -51,7 +51,7 @@ function Main(){
                 <h5>
                   Welcome to my profile website! I'm a junior software engineer looking to dive into the software industry.
                   This website serves as a project to test and demonstrate my familiarity with basic aspects of full-stack developlment.
-                  It's built through a combination of Spring Boot back-end, ReactJs front end and PostgreSQL database.
+                  It's built through a combination of Spring Boot back-end, ReactJs front end and a PostgreSQL database.
                 </h5>
                 <h5>
                   Please feel free to look around. You can find the code for this website at the Projects endpoint. 

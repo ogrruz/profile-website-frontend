@@ -3,11 +3,11 @@ import {BrowserRouter as Router,Routes, Route, BrowserRouter} from "react-router
 
 import NavBar from "./NavBar.js";
 import Contact from './Contact';
-import Projects from './Projects'
-import Comments from './Comments'
-import Main from './Main'
-import Register from './Register.js';
+import Projects from './Projects';
+import Comments from './Comments';
+import Main from './Main';
 import Login from './Login.js';
+import Register from "./Register.js";
 import { AuthProvider } from "./AuthContext.js";
 
 function handleDownload() { 
@@ -35,12 +35,12 @@ function App() {
       <NavBar/>
       <div className="App-padding"></div>
       <Routes>
-          <Route exact path="/" element={Main}></Route>
-          <Route exact path='/Contact' element={Contact}></Route>
-          <Route exact path='/Projects' element={Projects}></Route>
-          <Route exact path='/Comments' element={Comments}></Route>
-          <Route exact path='/Login' element={Login}></Route>
-          <Route exact path='/Register' element={Register}></Route>
+          <Route key="main" exact path="/" element={Main}></Route>
+          <Route key="contact" exact path='/Contact' element={Contact}></Route>
+          <Route key="projects" exact path='/Projects' element={Projects}></Route>
+          <Route key="comments" exact path='/Comments' element={Comments}></Route>
+          <Route key="login" exact path='/Login' element={Login()}></Route>
+          <Route key="register" exact path='/Register' element={Register()}></Route>
       </Routes>
     </div>
     

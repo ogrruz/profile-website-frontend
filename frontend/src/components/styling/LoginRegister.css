@@ -1,5 +1,12 @@
 @import-normalise;
 
+@font-face {
+  font-family: 'Roboto';
+  src: url(./fonts/Roboto_Mono/static/RobotoMono-Light.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body, html {
     height: 100%;
     margin: 0;
@@ -13,4 +20,32 @@ body, html {
     background-image: url("../../images/wood_background.jpg");
     background-repeat: repeat;
     background-size: cover;
+}
+
+.custom-textfield label.Mui-focused {
+  color: white;
+}
+
+.custom-textfield label {
+  color: white;
+}
+
+.custom-textfield .MuiOutlinedInput-root fieldset {
+  border-color: #007bff;
+}
+
+.custom-textfield .MuiOutlinedInput-root:hover fieldset {
+  border-color: white;
+}
+
+.custom-textfield .MuiOutlinedInput-root.Mui-focused fieldset {
+  border-color: white;
+}
+
+.custom-textfield input {
+  color: white;
+}
+
+.custom-checkbox .MuiSvgIcon-root {
+  color: #007bff;
 }

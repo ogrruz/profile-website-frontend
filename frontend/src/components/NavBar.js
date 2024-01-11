@@ -173,7 +173,7 @@ function ResponsiveAppBar() {
                   </MenuItem>
                 ))
               ) : (
-                <MenuItem onClick={ () => {handleCloseUserMenu(); navigate('/Register')}}>
+                <MenuItem onClick={ () => {handleCloseUserMenu(); navigate('/Login')}}>
                   <Typography textAlign="center">Log in</Typography>
                 </MenuItem>
               )}
