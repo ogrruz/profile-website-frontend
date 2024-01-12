@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
 import { Box, Container, Grid, Item, Typography, Button, TextField } from "@mui/material";
 import "./styling/LoginRegister.css"
@@ -8,7 +8,7 @@ const Login = () => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
+    
     const handleUsernameChange = (event) => {
         setUsername(event.target.value);
     }

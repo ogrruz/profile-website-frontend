@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
 import { Box, Container, Grid, Item, Typography, Button, TextField, Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 import "./styling/LoginRegister.css"
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
     const [username, setUsername] = React.useState("");
     const [displayName, setDisplayName] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const [displayUsername, setDisplayUsername] = React.useState(false)
+    const navigate = useNavigate();
 
     const resetFields = () => {
         setUsername('');
@@ -25,7 +27,27 @@ const Register = () => {
     }
 
     const handlePasswordChange = (event) => {
-        setPassword(event.target.value)
+        setPassword(event.target.value);
+    }
+
+    const handleCheckBoxClick = () => {
+        setDisplayUsername(!displayUsername);
+        if (!displayUsername) {
+            setDisplayName(username);
+        } 
+        else {
+            setDisplayName('');
+        }
+
+    }
+    const register = () => {
+        console.log("PLACEHOLDER FOR API HTTP REQUEST TO THE BACKEND")
+    }
+
+    const handleRegisterButton = () => {
+        register();
+        resetFields();
+        navigate('/Login')
     }
   
 
@@ -61,7 +83,7 @@ const Register = () => {
                                     value={displayName}
                                     onChange={handleDisplayNameChange}
                                 />
-                                <FormControlLabel control={<Checkbox size='large' className='custom-checkbox'/>} label="Display username"/>
+                                <FormControlLabel control={<Checkbox size='large' className='custom-checkbox' onClick={handleCheckBoxClick}/>} label="Display username"/>
                             </div>
                             <div style={{ marginBottom: '20px' }}>
                                 <TextField 
@@ -76,7 +98,7 @@ const Register = () => {
                                 />
                             </div>
                             <div style={{marginBottom:'40px', marginTop: '40px'}}>
-                                <Button variant="contained" sx={{marginRight: "1vmax"}} size='large'>
+                                <Button variant="contained" sx={{marginRight: "1vmax"}} size='large' onClick={handleRegisterButton}>
                                     Register
                                 </Button>
                             </div>
