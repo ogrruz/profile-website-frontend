@@ -40,9 +40,9 @@ function Main(){
       <Container>
         <div className="Grid_background">
           <Grid container spacing={0}>
-            <Grid xs={5} color={"white"} paddingLeft={'5vmax'}>
+            <Grid item xs={5} color={"white"} paddingLeft={'5vmax'}>
               <Typography className="Main_welcome_text">
-                <h1 >
+                <h1>
                   Hi,I'm Garry Logan
                 </h1>
                 <h2 style={{color: '#007bff'}}>
@@ -58,7 +58,7 @@ function Main(){
                 </h5>
               </Typography>
             </Grid>
-            <Grid xs={7}>
+            <Grid item xs={7}>
               <div className="Main-av">
                 <img src={Av} alt="Avatar" className="Main-av-image"/>  {/*style={{ display: { xs: 'none', md: 'flex' }, marginRight: 1, width: '48px', height: '48px'}} */}
               </div>
@@ -73,7 +73,7 @@ function Main(){
             </Grid>
 
             
-            <Grid xs={5} color={"white"}/>
+            <Grid item xs={5} color={"white"}/>
           </Grid>
         </div>
 

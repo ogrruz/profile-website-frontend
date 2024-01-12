@@ -10,16 +10,22 @@ const Register = () => {
     const [displayName, setDisplayName] = React.useState("");
     const [password, setPassword] = React.useState("");
 
+    const resetFields = () => {
+        setUsername('');
+        setPassword('');
+        setDisplayName('')
+    };
+
     const handleUsernameChange = (event) => {
-        
+        setUsername(event.target.value);
     }
 
     const handleDisplayNameChange = (event) => {
-        
+        setDisplayName(event.target.value);
     }
 
     const handlePasswordChange = (event) => {
-        
+        setPassword(event.target.value)
     }
   
 
@@ -27,7 +33,7 @@ const Register = () => {
     <Container>
             <div className="Grid_background">
                 <Grid container spacing={0} sx={{paddingBottom: "1vmax"}}>
-                    <Grid xs={8} className='' color={"white"} paddingLeft={'5vmax'}>
+                    <Grid item xs={8} className='' color={"white"} paddingLeft={'5vmax'}>
                         < Typography className="Comments_welcome_text_2" color={"white"}>
                             <h2 style={{color: '#007bff', marginBottom: '40px'}}>
                                 Register
@@ -40,6 +46,8 @@ const Register = () => {
                                     defaultValue=""
                                     color="primary"
                                     className="custom-textfield"
+                                    value={username}
+                                    onChange={handleUsernameChange}
                                 />
                             </div>
                             <div style={{ marginBottom: '20px' }}>
@@ -50,6 +58,8 @@ const Register = () => {
                                     defaultValue=""
                                     className='custom-textfield'
                                     sx={{paddingRight: "15px"}}
+                                    value={displayName}
+                                    onChange={handleDisplayNameChange}
                                 />
                                 <FormControlLabel control={<Checkbox size='large' className='custom-checkbox'/>} label="Display username"/>
                             </div>
@@ -61,6 +71,8 @@ const Register = () => {
                                     defaultValue=""
                                     className='custom-textfield'
                                     type='password'
+                                    value={password}
+                                    onChange={handlePasswordChange}
                                 />
                             </div>
                             <div style={{marginBottom:'40px', marginTop: '40px'}}>
@@ -70,9 +82,9 @@ const Register = () => {
                             </div>
                         </Typography>
                     </Grid>
-                    <Grid xs={4} className='' color={"white"} paddingRight={'5vmax'}>
+                    <Grid item xs={4} className='' color={"white"} paddingRight={'5vmax'}>
                         <Typography className="Comments_welcome_text_2" color={"white"}>
-                        <   h2 style={{color: '#007bff', marginBottom: '40px'}}>
+                            <h2 style={{color: '#007bff', marginBottom: '40px'}}>
                                 Note
                             </h2>
                             <h4>

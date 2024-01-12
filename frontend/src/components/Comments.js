@@ -9,7 +9,7 @@ function Comments(){
         <Container>
             <div className="Grid_background">
                 <Grid container spacing={0} sx={{paddingBottom: "1vmax"}}>
-                    <Grid xs={8} className='' color={"white"} paddingLeft={'5vmax'}>
+                    <Grid item xs={8} className='' color={"white"} paddingLeft={'5vmax'}>
                         < Typography className="Comments_welcome_text_2" color={"white"}>
                             <h2 style={{color: '#007bff'}}>
                                 Comments
