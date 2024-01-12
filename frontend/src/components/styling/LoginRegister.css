@@ -49,3 +49,8 @@ body, html {
 .custom-checkbox .MuiSvgIcon-root {
   color: #007bff;
 }
+
+.custom-textfield-disabled {
+  border-color: #007bff;
+  background-color: transparent;
+}

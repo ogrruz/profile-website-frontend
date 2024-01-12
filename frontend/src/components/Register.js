@@ -79,11 +79,13 @@ const Register = () => {
                                     label="Display Name"
                                     defaultValue=""
                                     className='custom-textfield'
-                                    sx={{paddingRight: "15px"}}
                                     value={displayName}
+                                    InputProps={{
+                                        readOnly: displayUsername,
+                                    }}
                                     onChange={handleDisplayNameChange}
                                 />
-                                <FormControlLabel control={<Checkbox size='large' className='custom-checkbox' onClick={handleCheckBoxClick}/>} label="Display username"/>
+                                <FormControlLabel sx={{paddingLeft: "15px"}} control={<Checkbox size='large' className='custom-checkbox' onClick={handleCheckBoxClick}/>} label="Display username"/>
                             </div>
                             <div style={{ marginBottom: '20px' }}>
                                 <TextField 
