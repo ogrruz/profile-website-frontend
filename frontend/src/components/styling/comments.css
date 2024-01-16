@@ -35,7 +35,7 @@
   
   .Grid_background{
     position: relative;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: #000000b3;
     border-radius: 20px;
     z-index: 0;
     border: 2px solid #00356a;

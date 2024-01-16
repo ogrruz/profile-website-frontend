@@ -1,5 +1,6 @@
 import "./App.css"
-import {BrowserRouter as Router,Routes, Route, BrowserRouter} from "react-router-dom";
+import {BrowserRouter as Router,Routes, Route, BrowserRouter, isRouteErrorResponse} from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 import NavBar from "./NavBar.js";
 import Contact from './Contact';
@@ -9,6 +10,7 @@ import Main from './Main';
 import Login from './Login.js';
 import Register from "./Register.js";
 import { AuthProvider } from "./AuthContext.js";
+import { responsiveFontSizes } from "@mui/material";
 
 function handleDownload() { 
   const pdfPath = process.env.PUBLIC_URL + 'Garry_Logan_CV.pdf'
@@ -30,6 +32,30 @@ function handleViewCv(){
 }
 
 function App() {
+
+  const [data, setData] = React.useState(null)
+
+  // test for backend connectivity
+  useEffect(() => {
+
+    const apiUrl = 'http://localhost:8080/api/users/jwtuser7@email.com'
+    
+    fetch(apiUrl, {
+      method: 'GET',
+      headers: {
+        'Authortization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqd3R1c2VyN0BlbWFpbC5jb20iLCJpYXQiOjE3MDU0MjAxNjksImV4cCI6MTcwNTQyMTYwOX0.QlQ_W2tqT0CZqvL-W3SXUhXG3jshv9RnOJlDh9fGGLo',
+        'Content-Type': 'application/json'
+      },
+    })
+    .then(response => response.json())
+    .then(resultData => {
+      setData(resultData);
+    })
+    .catch(error => {
+      console.error('OH NO SOMETHING WENT WRONG', error);
+    })
+  }, [])
+
   return (
     <div className="App">
       <NavBar/>
