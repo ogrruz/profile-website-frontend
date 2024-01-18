@@ -2,15 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from './AuthContext';
 import { Box, Container, Grid, Item, Typography, Button, TextField } from "@mui/material";
 import "./styling/LoginRegister.css"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
-    const [username, setUsername] = useState("");
+    const { saveJwt } = useAuth(); 
+
+    const [email, setemail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
     
-    const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
+    const handleemailChange = (event) => {
+        setemail(event.target.value);
     }
 
     const handlePasswordChange = (event) => {
@@ -18,7 +21,7 @@ const Login = () => {
     }
 
     const resetFields = () => {
-        setUsername('');
+        setemail('');
         setPassword('');
         console.log("FIELDS RESET?")
     };
@@ -32,6 +35,35 @@ const Login = () => {
         console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
         console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
     };
+
+    const login = async () => {
+        try {
+            const response = await fetch ('http://localhost:8080/api/users/authenticate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email,
+                    password
+                })
+            });
+
+            if(response.ok) {
+                const data = await response.json();
+                const { jwt } = data;
+                saveJwt(jwt);
+                console.log('AUTHENTICATION SUCCESSFUL');
+                console.log('ACQUIRED JWT: ', data);
+                navigate('/');
+
+            } else {
+                console.error('AUTHENTICAITON FAILED')
+            }
+        } catch (error) {
+            console.error('ERROR DURING AUTH PROCESS: ', error);
+        }
+    }
 
     return (
     <Container>
@@ -50,8 +82,8 @@ const Login = () => {
                                     defaultValue=""
                                     color="primary"
                                     className="custom-textfield"
-                                    value={username}
-                                    onChange={handleUsernameChange}
+                                    value={email}
+                                    onChange={handleemailChange}
                                 />
                             </div>
                             <div style={{ marginBottom: '20px' }}>
@@ -67,7 +99,7 @@ const Login = () => {
                                 />
                             </div>
                             <div style={{marginBottom:'40px', marginTop: '40px'}}>
-                                <Button variant="contained" sx={{marginRight: "1vmax"}} size='large'>
+                                <Button variant="contained" sx={{marginRight: "1vmax"}} size='large' onClick={login}>
                                     Login
                                 </Button>
                             </div>

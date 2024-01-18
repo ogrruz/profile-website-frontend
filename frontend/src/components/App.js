@@ -36,25 +36,29 @@ function App() {
   const [data, setData] = React.useState(null)
 
   // test for backend connectivity
-  useEffect(() => {
+  // useEffect(() => {
 
-    const apiUrl = 'http://localhost:8080/api/users/jwtuser7@email.com'
+  //   const apiUrl = 'http://localhost:8080/api/users/jwtuser7@email.com'
     
-    fetch(apiUrl, {
-      method: 'GET',
-      headers: {
-        'Authortization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqd3R1c2VyN0BlbWFpbC5jb20iLCJpYXQiOjE3MDU0MjAxNjksImV4cCI6MTcwNTQyMTYwOX0.QlQ_W2tqT0CZqvL-W3SXUhXG3jshv9RnOJlDh9fGGLo',
-        'Content-Type': 'application/json'
-      },
-    })
-    .then(response => response.json())
-    .then(resultData => {
-      setData(resultData);
-    })
-    .catch(error => {
-      console.error('OH NO SOMETHING WENT WRONG', error);
-    })
-  }, [])
+  //   fetch(apiUrl, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqd3R1c2VyN0BlbWFpbC5jb20iLCJpYXQiOjE3MDU1OTA1NjQsImV4cCI6MTcwNTU5MjAwNH0.TTKOpGV4lsSAuwIb_jy5KY8FTusoBz7ikmmY3eLyyaU',
+  //       'Content-Type': 'application/json'
+  //     },
+  //   })
+  //   .then(response => response.json())
+  //   .then(resultData => {
+  //     setData(resultData);
+  //   })
+  //   .then(console.log(data))
+  //   .catch(error => {
+  //     console.error('OH NO SOMETHING WENT WRONG', error);
+  //   })
+  // }, [])
+
+
+
 
   return (
     <div className="App">

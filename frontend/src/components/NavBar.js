@@ -20,7 +20,7 @@ const pages = [ 'Projects','Comments'];
 const settings = ['Account', 'Logout'];
 
 function ResponsiveAppBar() {
-  const { jwtToken, logout } = useAuth();
+  const { jwtToken, dropJwt } = useAuth();
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -40,7 +40,10 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
-  let url = "";
+  React.useEffect(() => {
+    // Handle actions on jwtToken change, if needed
+    // You can perform any logic here when jwtToken changes
+  }, [jwtToken]);
 
   return (
     <AppBar position="static" style={{background: 'black'}}>

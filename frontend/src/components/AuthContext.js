@@ -5,16 +5,16 @@ const AuthContext = createContext();
 function AuthProvider({ children }) {
   const [jwtToken, setJwtToken] = useState(null);
 
-  const login = (token) => {
+  const saveJwt = (token) => {
     setJwtToken(token);
   };
 
-  const logout = () => {
+  const dropJwt = () => {
     setJwtToken(null);
   };
 
   return (
-    <AuthContext.Provider value={{ jwtToken, login, logout }}>
+    <AuthContext.Provider value={{ jwtToken, saveJwt, dropJwt }}>
       {children}
     </AuthContext.Provider>
   );
