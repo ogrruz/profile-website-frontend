@@ -4,9 +4,9 @@ import { Box, Container, Grid, Item, Typography, Button, TextField } from "@mui/
 import "./styling/LoginRegister.css"
 import { Link, useNavigate } from 'react-router-dom';
 
-const Login = () => {
+function Login() {
 
-    const { saveJwt } = useAuth(); 
+    const { jwtToken, saveJwt, getJwt } = useAuth(); 
 
     const [email, setemail] = useState("");
     const [password, setPassword] = useState("");
@@ -51,10 +51,10 @@ const Login = () => {
 
             if(response.ok) {
                 const data = await response.json();
-                const { jwt } = data;
-                saveJwt(jwt);
+                saveJwt(data.token);
                 console.log('AUTHENTICATION SUCCESSFUL');
-                console.log('ACQUIRED JWT: ', data);
+                console.log(getJwt())
+                console.log('ACQUIRED JWT: ', data.token);
                 navigate('/');
 
             } else {
@@ -114,4 +114,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Login();

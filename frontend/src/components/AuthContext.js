@@ -13,8 +13,12 @@ function AuthProvider({ children }) {
     setJwtToken(null);
   };
 
+  const getJwt = () => {
+    return jwtToken;
+  }
+
   return (
-    <AuthContext.Provider value={{ jwtToken, saveJwt, dropJwt }}>
+    <AuthContext.Provider value={{ jwtToken, saveJwt, dropJwt, getJwt }}>
       {children}
     </AuthContext.Provider>
   );

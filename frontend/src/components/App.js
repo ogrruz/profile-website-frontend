@@ -1,5 +1,5 @@
 import "./App.css"
-import {BrowserRouter as Router,Routes, Route, BrowserRouter, isRouteErrorResponse} from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 
 import NavBar from "./NavBar.js";
@@ -7,8 +7,8 @@ import Contact from './Contact';
 import Projects from './Projects';
 import Comments from './Comments';
 import Main from './Main';
-import Login from './Login.js';
-import Register from "./Register.js";
+import Login from './Login';
+import Register from "./Register";
 import { AuthProvider } from "./AuthContext.js";
 import { responsiveFontSizes } from "@mui/material";
 
@@ -69,8 +69,8 @@ function App() {
           <Route key="contact" exact path='/Contact' element={Contact}></Route>
           <Route key="projects" exact path='/Projects' element={Projects}></Route>
           <Route key="comments" exact path='/Comments' element={Comments}></Route>
-          <Route key="login" exact path='/Login' element={Login()}></Route>
-          <Route key="register" exact path='/Register' element={Register()}></Route>
+          <Route key="login" exact path='/Login' element={Login}></Route>
+          <Route key="register" exact path='/Register' element={Register}></Route>
       </Routes>
     </div>
     
