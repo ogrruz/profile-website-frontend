@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { useAuth } from './AuthContext';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from './AuthContext';
 import { Box, Container, Grid, Item, Typography, Button, TextField } from "@mui/material";
 import "./styling/LoginRegister.css"
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useAsyncError, useNavigate } from 'react-router-dom';
 
 function Login() {
 
-    const { jwtToken, saveJwt, getJwt } = useAuth(); 
+    const [jwtToken, setJwtToken] = useContext(AuthContext); 
 
     const [email, setemail] = useState("");
     const [password, setPassword] = useState("");
@@ -51,9 +51,9 @@ function Login() {
 
             if(response.ok) {
                 const data = await response.json();
-                saveJwt(data.token);
+                setJwtToken(data.token);
                 console.log('AUTHENTICATION SUCCESSFUL');
-                console.log(getJwt())
+                console.log(jwtToken)
                 console.log('ACQUIRED JWT: ', data.token);
                 navigate('/');
 

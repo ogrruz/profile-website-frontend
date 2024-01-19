@@ -33,7 +33,7 @@ function handleViewCv(){
 
 function App() {
 
-  const [data, setData] = React.useState(null)
+  //const [data, setData] = React.useState(null)
 
   // test for backend connectivity
   // useEffect(() => {
@@ -43,7 +43,7 @@ function App() {
   //   fetch(apiUrl, {
   //     method: 'GET',
   //     headers: {
-  //       'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqd3R1c2VyN0BlbWFpbC5jb20iLCJpYXQiOjE3MDU1OTA1NjQsImV4cCI6MTcwNTU5MjAwNH0.TTKOpGV4lsSAuwIb_jy5KY8FTusoBz7ikmmY3eLyyaU',
+  //       'Authorization': 'Bearer x',
   //       'Content-Type': 'application/json'
   //     },
   //   })

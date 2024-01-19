@@ -1,31 +1,13 @@
 import { createContext, useContext, useState } from 'react';
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
-function AuthProvider({ children }) {
+export const AuthProvider = props => {
   const [jwtToken, setJwtToken] = useState(null);
 
-  const saveJwt = (token) => {
-    setJwtToken(token);
-  };
-
-  const dropJwt = () => {
-    setJwtToken(null);
-  };
-
-  const getJwt = () => {
-    return jwtToken;
-  }
-
   return (
-    <AuthContext.Provider value={{ jwtToken, saveJwt, dropJwt, getJwt }}>
-      {children}
+    <AuthContext.Provider value={[ jwtToken, setJwtToken ]}>
+      {props.children}
     </AuthContext.Provider>
   );
 }
-
-const useAuth = () => {
-  return useContext(AuthContext);
-}
-
-export { AuthProvider, useAuth };

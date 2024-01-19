@@ -14,13 +14,15 @@ import HomeIcon from '@mui/icons-material/Home';
 import PersonIcon from '@mui/icons-material/Person';
 
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from './AuthContext';
+import { AuthContext } from './AuthContext';
 
 const pages = [ 'Projects','Comments'];
 const settings = ['Account', 'Logout'];
 
 function ResponsiveAppBar() {
-  const { jwtToken, dropJwt } = useAuth();
+  
+  const [jwtToken, setJwtToken] = React.useContext(AuthContext);
+
   const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
