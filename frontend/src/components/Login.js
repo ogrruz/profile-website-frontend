@@ -79,7 +79,6 @@ const Login = () => {
                                     required
                                     id='login-username'
                                     label="username"
-                                    defaultValue=""
                                     color="primary"
                                     className="custom-textfield"
                                     value={email}
@@ -91,7 +90,6 @@ const Login = () => {
                                     required
                                     id='login-password'
                                     label="password"
-                                    defaultValue=""
                                     className='custom-textfield'
                                     type='password'
                                     value={password}

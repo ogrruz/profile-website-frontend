@@ -1,29 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { useAuth } from './AuthContext';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from './AuthContext';
 import { Box, Container, Grid, Item, Typography, Button, TextField, Checkbox, FormControlLabel, FormGroup } from "@mui/material";
 import "./styling/LoginRegister.css"
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
+    const [jwtToken, setJwtToken] = useContext(AuthContext);
+
+    const [email, setEmail] = React.useState("");
     const [username, setUsername] = React.useState("");
-    const [displayName, setDisplayName] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [displayUsername, setDisplayUsername] = React.useState(false)
     const navigate = useNavigate();
 
     const resetFields = () => {
-        setUsername('');
+        setEmail('');
         setPassword('');
-        setDisplayName('')
+        setUsername('')
     };
 
     const handleUsernameChange = (event) => {
-        setUsername(event.target.value);
+        setEmail(event.target.value);
     }
 
     const handleDisplayNameChange = (event) => {
-        setDisplayName(event.target.value);
+        setUsername(event.target.value);
     }
 
     const handlePasswordChange = (event) => {
@@ -33,21 +35,47 @@ const Register = () => {
     const handleCheckBoxClick = () => {
         setDisplayUsername(!displayUsername);
         if (!displayUsername) {
-            setDisplayName(username);
+            setUsername(email);
         } 
         else {
-            setDisplayName('');
+            setUsername('');
         }
 
     }
-    const register = () => {
-        console.log("PLACEHOLDER FOR API HTTP REQUEST TO THE BACKEND")
+    const register = async () => {
+        try {
+            const response = await fetch ('http://localhost:8080/api/users/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email,
+                    username,
+                    password
+                })
+            });
+
+            if(response.ok) {
+                const data = await response.json();
+                setJwtToken(data.token);
+                console.log('REGISTRATION SUCCESSFUL');
+                console.log(jwtToken)
+                console.log('ACQUIRED JWT: ', data.token);
+                navigate('/');
+
+            } else {
+                console.error('AUTHENTICAITON FAILED')
+            }
+        } catch (error) {
+            console.log("ERROR DURING REGISTRATION PROCESS: ", error)
+        } 
     }
 
     const handleRegisterButton = () => {
         register();
         resetFields();
-        navigate('/Login')
+        navigate('/')
     }
   
 
@@ -65,10 +93,9 @@ const Register = () => {
                                     required
                                     id='register-username'
                                     label="username"
-                                    defaultValue=""
                                     color="primary"
                                     className="custom-textfield"
-                                    value={username}
+                                    value={email}
                                     onChange={handleUsernameChange}
                                 />
                             </div>
@@ -77,9 +104,8 @@ const Register = () => {
                                     required
                                     id='register-display-name'
                                     label="Display Name"
-                                    defaultValue=""
                                     className='custom-textfield'
-                                    value={displayName}
+                                    value={username}
                                     InputProps={{
                                         readOnly: displayUsername,
                                     }}
@@ -92,7 +118,6 @@ const Register = () => {
                                     required
                                     id='register-password'
                                     label="password"
-                                    defaultValue=""
                                     className='custom-textfield'
                                     type='password'
                                     value={password}
