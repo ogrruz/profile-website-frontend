@@ -8,12 +8,12 @@ const Login = () => {
 
     const [jwtToken, setJwtToken] = useContext(AuthContext); 
 
-    const [email, setemail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
     
     const handleemailChange = (event) => {
-        setemail(event.target.value);
+        setUsername(event.target.value);
     }
 
     const handlePasswordChange = (event) => {
@@ -21,7 +21,7 @@ const Login = () => {
     }
 
     const resetFields = () => {
-        setemail('');
+        setUsername('');
         setPassword('');
         console.log("FIELDS RESET?")
     };
@@ -44,7 +44,7 @@ const Login = () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    email,
+                    username,
                     password
                 })
             });
@@ -81,7 +81,7 @@ const Login = () => {
                                     label="username"
                                     color="primary"
                                     className="custom-textfield"
-                                    value={email}
+                                    value={username}
                                     onChange={handleemailChange}
                                 />
                             </div>

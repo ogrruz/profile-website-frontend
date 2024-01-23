@@ -8,24 +8,24 @@ const Register = () => {
 
     const [jwtToken, setJwtToken] = useContext(AuthContext);
 
-    const [email, setEmail] = React.useState("");
     const [username, setUsername] = React.useState("");
+    const [displayName, setDisplayName] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [displayUsername, setDisplayUsername] = React.useState(false)
     const navigate = useNavigate();
 
     const resetFields = () => {
-        setEmail('');
+        setUsername('');
         setPassword('');
-        setUsername('')
+        setDisplayName('')
     };
 
     const handleUsernameChange = (event) => {
-        setEmail(event.target.value);
+        setUsername(event.target.value);
     }
 
     const handleDisplayNameChange = (event) => {
-        setUsername(event.target.value);
+        setDisplayName(event.target.value);
     }
 
     const handlePasswordChange = (event) => {
@@ -35,10 +35,10 @@ const Register = () => {
     const handleCheckBoxClick = () => {
         setDisplayUsername(!displayUsername);
         if (!displayUsername) {
-            setUsername(email);
+            setDisplayName(username);
         } 
         else {
-            setUsername('');
+            setDisplayName('');
         }
 
     }
@@ -50,8 +50,8 @@ const Register = () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    email,
                     username,
+                    displayName,
                     password
                 })
             });
@@ -95,7 +95,7 @@ const Register = () => {
                                     label="username"
                                     color="primary"
                                     className="custom-textfield"
-                                    value={email}
+                                    value={username}
                                     onChange={handleUsernameChange}
                                 />
                             </div>
@@ -105,7 +105,7 @@ const Register = () => {
                                     id='register-display-name'
                                     label="Display Name"
                                     className='custom-textfield'
-                                    value={username}
+                                    value={displayName}
                                     InputProps={{
                                         readOnly: displayUsername,
                                     }}
