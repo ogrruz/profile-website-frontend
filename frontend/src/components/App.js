@@ -1,5 +1,5 @@
 import "./App.css"
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { useEffect, useState } from "react";
 
 import NavBar from "./NavBar.js";
@@ -62,16 +62,22 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar/>
-      <div className="App-padding"></div>
-      <Routes>
-          <Route key="main" exact path="/" element={Main}></Route>
-          <Route key="contact" exact path='/Contact' element={Contact}></Route>
-          <Route key="projects" exact path='/Projects' element={Projects}></Route>
-          <Route key="comments" exact path='/Comments' element={Comments}></Route>
-          <Route key="login" exact path='/Login' element={Login}></Route>
-          <Route key="register" exact path='/Register' element={Register}></Route>
-      </Routes>
+      <AuthProvider>
+        <BrowserRouter>
+          <NavBar/>
+          <div className="App-padding"></div>
+          <div>
+            <Routes>
+                <Route key="main" exact path="/" Component={Main}></Route>
+                <Route key="contact" exact path='/Contact' Component={Contact}></Route>
+                <Route key="projects" exact path='/Projects' Component={Projects}></Route>
+                <Route key="comments" exact path='/Comments' Component={Comments}></Route>
+                <Route key="login" exact path='/Login' Component={Login}></Route>
+                <Route key="register" exact path='/Register' Component={Register}></Route>
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </AuthProvider>
     </div>
     
     

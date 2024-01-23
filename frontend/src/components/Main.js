@@ -30,7 +30,7 @@ function handleViewCV() {
   window.open(pdfPath, '_blank');
 }
 
-function Main(){
+const Main = () => {
 
   const email = process.env.REACT_APP_EMAIL;
   const phone = process.env.REACT_APP_PHONE;
@@ -104,4 +104,4 @@ function Main(){
       );
 }
 
-export default Main();
+export default Main;

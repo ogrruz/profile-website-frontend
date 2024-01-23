@@ -1,7 +1,7 @@
 import "./styling/Contact.css"
 import { Container, Grid, Typography } from "@mui/material"
 
-function Contact(){
+const Contact = () => {
 
     return (
         <div className="Contact">

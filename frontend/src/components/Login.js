@@ -4,7 +4,7 @@ import { Box, Container, Grid, Item, Typography, Button, TextField } from "@mui/
 import "./styling/LoginRegister.css"
 import { Link, useAsyncError, useNavigate } from 'react-router-dom';
 
-function Login() {
+const Login = () => {
 
     const [jwtToken, setJwtToken] = useContext(AuthContext); 
 
@@ -114,4 +114,4 @@ function Login() {
     );
 };
 
-export default Login();
+export default Login;

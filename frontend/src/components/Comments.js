@@ -2,7 +2,7 @@ import "./styling/Comments.css"
 import "./styling/Main.css"
 import { Box, Container, Grid, Item, Typography, Button } from "@mui/material";
 
-function Comments(){
+const Comments = () => {
 
 
     return (
@@ -24,4 +24,4 @@ function Comments(){
     )
 }
 
-export default Comments();
+export default Comments;

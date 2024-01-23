@@ -4,7 +4,7 @@ import { Box, Container, Grid, Item, Typography, Button, TextField, Checkbox, Fo
 import "./styling/LoginRegister.css"
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 
-function Register() {
+const Register = () => {
 
     const [username, setUsername] = React.useState("");
     const [displayName, setDisplayName] = React.useState("");
@@ -125,4 +125,4 @@ function Register() {
     );
 };
 
-export default Register();
+export default Register;
