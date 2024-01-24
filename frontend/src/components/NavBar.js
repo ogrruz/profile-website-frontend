@@ -42,6 +42,10 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
+  const handleLogout = () => {
+    setJwtToken(null);
+  }
+
   React.useEffect(() => {
     // Handle actions on jwtToken change, if needed
     // You can perform any logic here when jwtToken changes
@@ -173,7 +177,7 @@ function ResponsiveAppBar() {
             >
               {jwtToken ? (
                 settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                  <MenuItem key={setting} onClick={() => (setting === 'Account' ? (handleCloseUserMenu(), navigate('/Account')) : (handleCloseUserMenu(),handleLogout(),navigate('/')))}>
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
                 ))
