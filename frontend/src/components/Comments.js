@@ -1,8 +1,23 @@
 import "./styling/Comments.css"
 import "./styling/Main.css"
 import { Box, Container, Grid, Item, Typography, Button } from "@mui/material";
+import Comment from "./Comment";
 
 const Comments = () => {
+
+    //populate with data points from the comments table
+    const comments = [ 
+        {
+            user: "Test User",
+            content: "this is a test comment",
+            date: "25/01/2024"
+        },
+        {
+            user: "Test User2",
+            content: "this is a test comment2",
+            date: "25/01/2024"
+        }
+    ];
 
 
     return (
@@ -18,6 +33,23 @@ const Comments = () => {
                         </Typography>
                     </Grid>
                 </Grid>
+            </div>
+            <div className="comments">
+                {comments.map((comment, index) => (
+
+                    <div className="Grid_background" style={{marginTop: '2vmax'}}>
+                        <Grid container spacing={0} sx={{paddingBottom: "1vmax"}}>
+                            <Grid item xs={8} className='' color={"white"} paddingLeft={'5vmax'}>
+                                <Comment
+                                    key={index} 
+                                    user={comment.user} 
+                                    content={comment.content} 
+                                    date={comment.date} 
+                                />
+                            </Grid>
+                        </Grid>
+                    </div>
+                ))}
             </div>
         </Container>
         
