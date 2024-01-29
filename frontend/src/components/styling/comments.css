@@ -32,6 +32,18 @@
       text-align: left;
       letter-spacing: .3rem;
     }
+
+  .Comment_Header {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Roboto', monospace;
+  }
+
+  .Comment-content {
+    padding-top: 1vmax;
+    text-align: left;
+    font-family: 'Roboto', monospace;
+  }
   
   .Grid_background{
     position: relative;
