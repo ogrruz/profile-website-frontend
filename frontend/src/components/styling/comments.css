@@ -38,6 +38,11 @@
     justify-content: space-between;
     font-family: 'Roboto', monospace;
   }
+  
+  .Comment_last_modified {
+    font-family: 'Roboto', monospace;
+    text-align: right;
+  }
 
   .Comment-content {
     padding-top: 1vmax;
