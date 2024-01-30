@@ -3,11 +3,38 @@ import "./styling/Main.css"
 import { Box, Container, Grid, Item, Typography, Button } from "@mui/material";
 import Comment from "./Comment";
 import PersonIcon from "@mui/icons-material/Person"
+import { useEffect, useState } from "react";
 
 const Comments = () => {
 
+    const [comments, setComments] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null); 
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/api/comments/retrieve");
+
+                if (!response.ok) {
+                    throw new Error('Error retrieving comments from backend');
+                }
+
+                const data = await response.json();
+                setComments(data);
+            } catch (error) {
+                setError(error)
+            } finally {
+                setLoading(false)
+            }
+        };
+
+        fetchData();
+    }, []);
+
     //populate with data points from the comments table
-    const comments = [ 
+    const comments1 = [ 
         {
             user: "Test User",
             content: "this is a test comment",
@@ -68,25 +95,29 @@ const Comments = () => {
                 </Grid>
             </div>
             <div className="comments">
-                {comments.map((comment, index) => (
+                {comments ? 
+                    (comments.map((comment, index) => (
 
-                    <div className="Grid_background" style={{marginTop: '1vmax'}}>
-                        <Grid container spacing={0} sx={{paddingBottom: "2vmax"}}>
-                            <Grid item xs={1} className='' color={"white"}>
-                                <PersonIcon fontSize='large' style={{color: 'white'}}/>
+                        <div className="Grid_background" style={{marginTop: '1vmax'}}>
+                            <Grid container spacing={0} sx={{paddingBottom: "2vmax"}}>
+                                <Grid item xs={1} className='' color={"white"}>
+                                    <PersonIcon fontSize='large' style={{color: 'white'}}/>
+                                </Grid>
+                                <Grid item xs={10} className='' color={"white"}>
+                                    <Comment
+                                        key={index} 
+                                        user={comment.userDisplayName} 
+                                        content={comment.commentText} 
+                                        date={comment.creationDate}
+                                        lastModified={comment.lastModifed}
+                                    />
+                                </Grid>
                             </Grid>
-                            <Grid item xs={10} className='' color={"white"}>
-                                <Comment
-                                    key={index} 
-                                    user={comment.user} 
-                                    content={comment.content} 
-                                    date={comment.date}
-                                    lastModified={comment.lastModified}
-                                />
-                            </Grid>
-                        </Grid>
-                    </div>
-                ))}
+                        </div>
+                    ))) : (
+                        <div/>
+                    )   
+                }
             </div>
         </Container>
         
