@@ -33,52 +33,6 @@ const Comments = () => {
         fetchData();
     }, []);
 
-    //populate with data points from the comments table
-    const comments1 = [ 
-        {
-            user: "Test User",
-            content: "this is a test comment",
-            date: "25/01/2024",
-            lastModified: "25/01/2024"
-        },
-        {
-            user: "Test User2",
-            content: "this is a test comment2",
-            date: "25/01/2024",
-            lastModified: "25/01/2024"
-        },
-        {
-            user: "Test User3",
-            content: "this is a test comment3",
-            date: "29/01/2024",
-            lastModified: "29/01/2024"
-        },
-        {
-            user: "Test User4",
-            content: "this is a test comment4",
-            date: "29/01/2024",
-            lastModified: "29/01/2024"
-        },
-        {
-            user: "Test User5",
-            content: "this is a test comment5",
-            date: "29/01/2024",
-            lastModified: "29/01/2024"
-        },
-        {
-            user: "Test User6",
-            content: "this is a test comment6",
-            date: "29/01/2024",
-            lastModified: "29/01/2024"
-        },
-        {
-            user: "Test User7",
-            content: "this is a test comment7",
-            date: "29/01/2024",
-            lastModified: "29/01/2024"
-        }
-    ];
-
 
     return (
         <Container>
