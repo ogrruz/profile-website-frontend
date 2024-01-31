@@ -48,6 +48,11 @@ const Comments = () => {
         }
     }
 
+    function formatDate(timestamp) {
+        const date = new Date(timestamp);
+        return date.toLocaleString();
+    }
+
     const fetchData = async () => {
         try {
             const response = await fetch("http://localhost:8080/api/comments/retrieve");
@@ -125,7 +130,7 @@ const Comments = () => {
             </div>
             <div className="comments">
                 {comments ? 
-                    (comments.map((comment, index) => (
+                    (comments.slice().reverse().map((comment, index) => (
 
                         <div className="Grid_background" style={{marginTop: '1vmax'}}>
                             <Grid container spacing={0} sx={{paddingBottom: "2vmax"}}>
@@ -137,8 +142,8 @@ const Comments = () => {
                                         key={index} 
                                         user={comment.userDisplayName} 
                                         content={comment.commentText} 
-                                        date={comment.creationDate}
-                                        lastModified={comment.lastModifed}
+                                        date={formatDate(comment.creationDate)}
+                                        lastModified={formatDate(comment.lastModifed)}
                                     />
                                 </Grid>
                             </Grid>
