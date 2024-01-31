@@ -63,6 +63,11 @@
     padding-bottom: 2vmax;
   }
   
+  .Comment_textfield {
+    padding-bottom: 2vmax;
+    text-align: left;
+  }
+  
   .MuiButton-root {
       margin-left: 1vmax;
       font-family: 'inherit-the-font-for-buttons';

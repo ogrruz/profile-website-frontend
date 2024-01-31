@@ -1,6 +1,8 @@
 import "./styling/Main.css"
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useContext } from 'react';
+import { AuthContext } from "./AuthContext.js";
 
 import NavBar from "./NavBar.js";
 import { Box, Container, Grid, Item, Typography, Button } from "@mui/material";
@@ -31,6 +33,8 @@ function handleViewCV() {
 }
 
 const Main = () => {
+
+  const [jwtToken, setJwtToken] = useContext(AuthContext);
 
   const email = process.env.REACT_APP_EMAIL;
   const phone = process.env.REACT_APP_PHONE;

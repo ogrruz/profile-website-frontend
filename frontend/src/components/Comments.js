@@ -1,37 +1,73 @@
 import "./styling/Comments.css"
 import "./styling/Main.css"
-import { Box, Container, Grid, Item, Typography, Button } from "@mui/material";
+import { Box, Container, Grid, Item, Typography, Button, TextField } from "@mui/material";
 import Comment from "./Comment";
 import PersonIcon from "@mui/icons-material/Person"
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from './AuthContext'
 
 const Comments = () => {
 
+    const [jwtToken, setJwtToken] = useContext(AuthContext);
     const [comments, setComments] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null); 
+    const [error, setError] = useState(null);
 
+    const[reloadData, setReloadData] = useState(false);
+
+    const [commentText, setCommentText] = useState("")
+    
+    const handleCommentTextChange = (event) => {
+        setCommentText(event.target.value);
+    }
+
+    const navigate = useNavigate();
+
+    const postComment= async () => {
+        try {
+            const response = await fetch ('http://localhost:8080/api/comments/post', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + jwtToken
+                },
+                body: JSON.stringify({
+                    commentText
+                })
+            });
+
+            if(response.ok) {
+                setReloadData(prev => !prev);
+
+            } else {
+                console.error('POST REQUEST FAILED')
+            }
+        } catch (error) {
+            console.error('ERROR DURING POST REQUEST: ', error);
+        }
+    }
+
+    const fetchData = async () => {
+        try {
+            const response = await fetch("http://localhost:8080/api/comments/retrieve");
+
+            if (!response.ok) {
+                throw new Error('Error retrieving comments from backend');
+            }
+
+            const data = await response.json();
+            setComments(data);
+        } catch (error) {
+            setError(error)
+        } finally {
+            setLoading(false)
+        }
+    };
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch("http://localhost:8080/api/comments/retrieve");
-
-                if (!response.ok) {
-                    throw new Error('Error retrieving comments from backend');
-                }
-
-                const data = await response.json();
-                setComments(data);
-            } catch (error) {
-                setError(error)
-            } finally {
-                setLoading(false)
-            }
-        };
-
         fetchData();
-    }, []);
+    }, [reloadData]);
 
 
     return (
@@ -45,6 +81,45 @@ const Comments = () => {
                             </h2>
                             <h4>If you have a comment or suggestion with regards the UI / UX of the site and / or the code behind it please leave them here!</h4>
                         </Typography>
+                        <div>
+                            {jwtToken == null ? (
+                                <div>
+                                    < Typography className="Comments_welcome_text_2" color={"white"}>
+                                        <h4> ! You must be logged in to leave a comment !</h4>
+                                    </Typography>
+                                    <Button variant="contained" sx={{marginRight: "1vmax"}} size='large' onClick={() => navigate('/Login')}>
+                                    Login
+                                    </Button>
+                                </div>
+                            ) : (
+                                <div>
+                                    < Typography className="Comments_welcome_text_2" color={"white"}>
+                                        <h4> Post a comment</h4>
+                                    </Typography>
+                                    <div className="Comment_textfield">
+                                        <TextField
+                                            className='custom-textfield'
+                                            placeholder="Comment text here..."
+                                            multiline
+                                            rows={4}
+                                            maxRows={4}
+                                            style={{ color: "#007bff", borderColor: "#007bff"}}
+                                            variant="outlined"
+                                            InputProps={{ style: { color: 'white' } }}
+                                            sx={{ width: '100%' }}
+                                            value={commentText}
+                                            onChange={handleCommentTextChange}
+                                        />
+                                    </div>
+                                    <div>
+                                        <Button variant="contained" sx={{marginRight: "1vmax"}} size='large' onClick={() => {postComment(); setCommentText("")}}>
+                                            Post
+                                        </Button>
+                                    </div>
+                                </div>
+                            )
+                            }
+                        </div>
                     </Grid>
                 </Grid>
             </div>

@@ -57,8 +57,8 @@ function ResponsiveAppBar() {
         <Toolbar disableGutters sx={{backgroundColor: 'black'}}>
           {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           {/* <img src={Av} alt="Avatar" style={{ display: { xs: 'none', md: 'flex' }, marginRight: 1, width: '48px', height: '48px' }}/> */}
-          <a href='/'>
-            <IconButton sx={{ p: 0 }}>
+          <a >
+            <IconButton sx={{ p: 0 }} onClick={() => navigate('/')}>
               <HomeIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color: 'White' }} />
             </IconButton>
           </a>
@@ -66,7 +66,6 @@ function ResponsiveAppBar() {
             variant="h6"
             noWrap
             component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -121,7 +120,6 @@ function ResponsiveAppBar() {
             variant="h5"
             noWrap
             component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -139,13 +137,12 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => {handleCloseNavMenu(); navigate(`/${page}`)}}
                 sx={{ my: 2, color: 'white', display: 'block', fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
                 color: 'inherit',
                 textDecoration: 'none'}}
-                href={`/${page}`}
               >
                 {page}
               </Button>
