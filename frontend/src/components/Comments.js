@@ -14,8 +14,6 @@ const Comments = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const[reloadData, setReloadData] = useState(false);
-
     const [commentText, setCommentText] = useState("")
     
     const handleCommentTextChange = (event) => {
@@ -38,7 +36,8 @@ const Comments = () => {
             });
 
             if(response.ok) {
-                setReloadData(prev => !prev);
+                navigate("/");
+                navigate("/Comments")
 
             } else {
                 console.error('POST REQUEST FAILED')
@@ -67,7 +66,7 @@ const Comments = () => {
 
     useEffect(() => {
         fetchData();
-    }, [reloadData]);
+    }, []); //[reloadData]
 
 
     return (
