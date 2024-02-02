@@ -4,6 +4,7 @@ import { AuthContext } from './AuthContext';
 import { Button, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import { useNavigate } from 'react-router-dom';
 
 const Comment = ({ userDisplayName, commentText, date, lastModified, commentId }) => {
 
@@ -11,6 +12,8 @@ const Comment = ({ userDisplayName, commentText, date, lastModified, commentId }
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [commentAuthor, setCommentAuthor] = useState(false);
+
+  const navigate = useNavigate();
 
   function formatDate(timestamp) {
     const date = new Date(timestamp);
@@ -45,6 +48,34 @@ const Comment = ({ userDisplayName, commentText, date, lastModified, commentId }
       }
   }
 
+  const deleteComment = async () => {
+
+    try {
+      const response = await fetch ('http://localhost:8080/api/comments/delete', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + jwtToken
+          },
+          body: JSON.stringify({
+              commentText,
+              userDisplayName,
+              commentId
+          })
+      });
+
+      if(response.ok == true) {
+        navigate("/");
+        navigate("/Comments")
+      } else {
+          console.log('INCORRECT REQUEST')
+      }
+    } catch (error) {
+        console.error('ERROR DURING REQUEST PROCESS: ', error);
+    }
+
+  }
+
 
   return (
     <div className="">
@@ -60,7 +91,7 @@ const Comment = ({ userDisplayName, commentText, date, lastModified, commentId }
               <IconButton size="small">
                 <EditIcon className='Comment_controls_buttons' />
               </IconButton>
-              <IconButton size="small">
+              <IconButton size="small" onClick={deleteComment}>
                 <DeleteIcon sx={{color: "red"}}/>
               </IconButton>
             </>
