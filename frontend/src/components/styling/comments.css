@@ -36,19 +36,33 @@
   .Comment_Header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    
+  }
+  
+  .Comment_username {
+    font-size: large;
     font-family: 'Roboto', monospace;
+    color: #007bff
+  }
+  
+  .Comment_date {
+    font-size: small;
+    margin-left: 2vmax;
+    color:#b1b1b1b3
   }
   
   .Comment_last_modified {
     font-family: 'Roboto', monospace;
     text-align: right;
+    padding-top: 0.5vmax;
+
   }
 
   .Comment-content {
     padding-top: 1vmax;
     text-align: left;
     font-family: 'Roboto', monospace;
-    padding-bottom: 1vmax;
   }
   
   .Grid_background{
@@ -69,10 +83,8 @@
   }
 
   .Comment_controls {
-    padding-top: 2vmax;
-    margin-right: 0;
     display: flex;
-    justify-content: right;
+    align-items: center;
   }
 
   .Comment_controls_buttons {

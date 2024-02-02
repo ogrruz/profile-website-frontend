@@ -49,29 +49,28 @@ const Comment = ({ userDisplayName, commentText, date, lastModified, commentId }
   return (
     <div className="">
       <div className="Comment_Header">
-        <span style={{color: "#007bff"}}>{userDisplayName}</span> 
-        <span>Date created: {formatDate(date)}</span>
+        <div>
+          <span className='Comment_username' >{userDisplayName}</span> 
+          <span className='Comment_date'>{formatDate(date)}</span>
+        </div>
+        
+        <div className='Comment_controls'>
+          {commentAuthor && (
+            <>
+              <IconButton size="small">
+                <EditIcon className='Comment_controls_buttons' />
+              </IconButton>
+              <IconButton size="small">
+                <DeleteIcon sx={{color: "red"}}/>
+              </IconButton>
+            </>
+          )
+          }
+        </div>
       </div>
       <div className="Comment-content">{commentText}</div>
-      <div className="Comment_last_modified" >Last modified: {formatDate(lastModified)}</div>
 
-      <div>
-        {commentAuthor == true ? (
-          <div className='Comment_controls'>
-            <IconButton>
-              <EditIcon className='Comment_controls_buttons'/>
-            </IconButton>
-            <IconButton >
-              <DeleteIcon sx={{color: "red"}}/>
-            </IconButton>
-          </div>
-        ) : (
-          <div>
-
-          </div>
-        )
-        }
-      </div>
+      
 
     </div>
   );
