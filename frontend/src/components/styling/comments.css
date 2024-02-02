@@ -67,6 +67,17 @@
     padding-bottom: 2vmax;
     text-align: left;
   }
+
+  .Comment_controls {
+    padding-top: 2vmax;
+    margin-right: 0;
+    display: flex;
+    justify-content: right;
+  }
+
+  .Comment_controls_buttons {
+    color: #007bff;
+  }
   
   .MuiButton-root {
       margin-left: 1vmax;

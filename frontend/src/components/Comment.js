@@ -1,6 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
 import './styling/Comments.css'
 import { AuthContext } from './AuthContext';
+import { Button, IconButton } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 const Comment = ({ userDisplayName, commentText, date, lastModified, commentId }) => {
 
@@ -14,11 +17,7 @@ const Comment = ({ userDisplayName, commentText, date, lastModified, commentId }
     return date.toLocaleString();
   }
 
-  useEffect ( () => {
-
-    checkOwner();
-
-  },[])
+  useEffect ( () => {if(jwtToken) {checkOwner()}} ,[]);
 
   const checkOwner = async () => {
 
@@ -58,11 +57,18 @@ const Comment = ({ userDisplayName, commentText, date, lastModified, commentId }
 
       <div>
         {commentAuthor == true ? (
-          <h2>
-            HELO
-          </h2>
+          <div className='Comment_controls'>
+            <IconButton>
+              <EditIcon className='Comment_controls_buttons'/>
+            </IconButton>
+            <IconButton >
+              <DeleteIcon sx={{color: "red"}}/>
+            </IconButton>
+          </div>
         ) : (
-          <div/>
+          <div>
+
+          </div>
         )
         }
       </div>
