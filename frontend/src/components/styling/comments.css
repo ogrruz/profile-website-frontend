@@ -90,6 +90,10 @@
   .Comment_controls_buttons {
     color: #007bff;
   }
+
+  .Comment_edit_controls {
+    margin-right: 1vmax;
+  }
   
   .MuiButton-root {
       margin-left: 1vmax;

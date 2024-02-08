@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
 import './styling/Comments.css'
 import { AuthContext } from './AuthContext';
-import { Button, IconButton } from '@mui/material';
+import { Button, IconButton, TextField } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import CheckIcon from '@mui/icons-material/Check';
+import ClearIcon from '@mui/icons-material/Clear';
 import { useNavigate } from 'react-router-dom';
 
 const Comment = ({ userDisplayName, commentText, date, lastModified, commentId }) => {
@@ -12,6 +14,8 @@ const Comment = ({ userDisplayName, commentText, date, lastModified, commentId }
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [commentAuthor, setCommentAuthor] = useState(false);
+  const [enableEdit, setEnableEdit] = useState(false);
+  const [newCommentText, setNewCommentText] = useState(commentText);
 
   const navigate = useNavigate();
 
@@ -21,6 +25,10 @@ const Comment = ({ userDisplayName, commentText, date, lastModified, commentId }
   }
 
   useEffect ( () => {if(jwtToken) {checkOwner()}} ,[]);
+
+  const handleNewCommentTextChange = (event) => {
+    setNewCommentText(event.target.value);
+  }
 
   const checkOwner = async () => {
 
@@ -68,10 +76,40 @@ const Comment = ({ userDisplayName, commentText, date, lastModified, commentId }
         navigate("/");
         navigate("/Comments")
       } else {
-          console.log('INCORRECT REQUEST')
+          console.log('INCORRECT DELETE REQUEST')
       }
     } catch (error) {
-        console.error('ERROR DURING REQUEST PROCESS: ', error);
+        console.error('ERROR DURING DELETE REQUEST PROCESS: ', error);
+    }
+
+  }
+
+  const editComment = async () => {
+
+    console.log("new comment text const: " + newCommentText)
+
+    try {
+      const response = await fetch ('http://localhost:8080/api/comments/edit', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + jwtToken
+          },
+          body: JSON.stringify({
+              commentText: newCommentText,
+              userDisplayName,
+              commentId
+          })
+      });
+
+      if(response.ok == true) {
+        navigate("/");
+        navigate("/Comments")
+      } else {
+          console.log('INCORRECT EDIT REQUEST')
+      }
+    } catch (error) {
+        console.error('ERROR DURING EDIT REQUEST PROCESS: ', error);
     }
 
   }
@@ -88,7 +126,7 @@ const Comment = ({ userDisplayName, commentText, date, lastModified, commentId }
         <div className='Comment_controls'>
           {commentAuthor && (
             <>
-              <IconButton size="small">
+              <IconButton size="small" onClick={() => setEnableEdit(!enableEdit)}>
                 <EditIcon className='Comment_controls_buttons' />
               </IconButton>
               <IconButton size="small" onClick={deleteComment}>
@@ -99,9 +137,33 @@ const Comment = ({ userDisplayName, commentText, date, lastModified, commentId }
           }
         </div>
       </div>
-      <div className="Comment-content">{commentText}</div>
+      <div className='Comment-content'>
+          {enableEdit ? (
+            <div>
+              <TextField
+                className='custom-textfield'
+                multiline
+                style={{ color: "#007bff", borderColor: "#007bff"}}
+                variant="outlined"
+                InputProps={{ style: { color: 'white' } }}
+                sx={{ width: '100%' }}
+                value={newCommentText}
+                onChange={handleNewCommentTextChange}
+              />
+              <>
+                <IconButton size="small" onClick={() => {editComment()}}>
+                  <CheckIcon className='Comment_controls_buttons' sx={{color: "green"}}/>
+                </IconButton>
+                <IconButton size="small" onClick={() => setEnableEdit(!enableEdit)}>
+                  <ClearIcon sx={{color: "red"}}/>
+                </IconButton>
+              </>
+            </div>
+          ) : (
+            <div className="Comment-content">{commentText}</div>
+          )}
+      </div>
 
-      
 
     </div>
   );
