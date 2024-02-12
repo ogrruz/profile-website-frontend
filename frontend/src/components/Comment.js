@@ -121,6 +121,7 @@ const Comment = ({ userDisplayName, commentText, date, lastModified, commentId }
         <div>
           <span className='Comment_username' >{userDisplayName}</span> 
           <span className='Comment_date'>{formatDate(date)}</span>
+          {date == lastModified ? ( <div></div>):(<span className='Comment_edited'>Edited: {formatDate(lastModified)}</span>)}
         </div>
         
         <div className='Comment_controls'>

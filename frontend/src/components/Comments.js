@@ -124,28 +124,30 @@ const Comments = () => {
             </div>
             <div className="comments">
                 {comments ? 
-                    (comments.slice().reverse().map((comment, index) => (
-
-                        <div className="Grid_background" style={{marginTop: '1vmax'}}>
-                            <Grid container spacing={0} sx={{paddingBottom: "2vmax"}}>
-                                <Grid item xs={1} className='' color={"white"}>
-                                    <PersonIcon fontSize='large' style={{color: 'white'}}/>
+                    (comments
+                        .slice() // Create a copy of the comments array
+                        .sort((a, b) => new Date(b.creationDate) - new Date(a.creationDate)) // Sort comments based on creationDate
+                        .map((comment, index) => (
+                            <div className="Grid_background" style={{marginTop: '1vmax'}} key={index}>
+                                <Grid container spacing={0} sx={{paddingBottom: "2vmax"}}>
+                                    <Grid item xs={1} className='' color={"white"}>
+                                        <PersonIcon fontSize='large' style={{color: 'white'}}/>
+                                    </Grid>
+                                    <Grid item xs={10} className='' color={"white"}>
+                                        <Comment
+                                            userDisplayName={comment.userDisplayName} 
+                                            commentText={comment.commentText} 
+                                            date={comment.creationDate}
+                                            lastModified={comment.lastModifed}
+                                            commentId={comment.commentId}
+                                        />
+                                    </Grid>
                                 </Grid>
-                                <Grid item xs={10} className='' color={"white"}>
-                                    <Comment
-                                        key={index} 
-                                        userDisplayName={comment.userDisplayName} 
-                                        commentText={comment.commentText} 
-                                        date={comment.creationDate}
-                                        lastModified={comment.lastModifed}
-                                        commentId={comment.commentId}
-                                    />
-                                </Grid>
-                            </Grid>
-                        </div>
-                    ))) : (
+                            </div>
+                        ))
+                    ) : (
                         <div/>
-                    )   
+                    )      
                 }
             </div>
         </Container>

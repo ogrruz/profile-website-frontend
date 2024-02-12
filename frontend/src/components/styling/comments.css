@@ -51,6 +51,12 @@
     margin-left: 2vmax;
     color:#b1b1b1b3
   }
+
+  .Comment_edited {
+    font-size: small;
+    margin-left: 2vmax;
+    color:#b1b1b1b3
+  }
   
   .Comment_last_modified {
     font-family: 'Roboto', monospace;
