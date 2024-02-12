@@ -47,24 +47,28 @@ const Comments = () => {
         }
     }
 
-    const fetchData = async () => {
-        try {
-            const response = await fetch("http://localhost:8080/api/comments/retrieve");
-
-            if (!response.ok) {
-                throw new Error('Error retrieving comments from backend');
-            }
-
-            const data = await response.json();
-            setComments(data);
-        } catch (error) {
-            setError(error)
-        } finally {
-            setLoading(false)
-        }
-    };
+    
 
     useEffect(() => {
+
+        const fetchData = async () => {
+            try {
+                const response = await fetch("http://localhost:8080/api/comments/retrieve");
+    
+                if (!response.ok) {
+                    throw new Error('Error retrieving comments from backend');
+                }
+    
+                const data = await response.json();
+                setComments(data);
+            } catch (error) {
+                setError(error)
+            } finally {
+                setLoading(false)
+            }
+        };
+
+        
         fetchData();
     }, []); //[reloadData]
 
