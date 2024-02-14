@@ -10,15 +10,32 @@ import { AuthContext } from './AuthContext'
 const Comments = () => {
 
     const [jwtToken, setJwtToken] = useContext(AuthContext);
-    const [comments, setComments] = useState(null);
+    const [comments, setComments] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
 
-    const [commentText, setCommentText] = useState("")
+    const commentsPerPage = 5;
+    const indexOfLastComment = currentPage * commentsPerPage;
+    const indexOfFirstComment = indexOfLastComment - commentsPerPage;
+
+    const commentsSorted =   comments ? comments.slice().sort((a, b) => new Date(b.creationDate) - new Date(a.creationDate)) : [];
+
+    const currentPageComments = commentsSorted ? commentsSorted.slice(indexOfFirstComment, indexOfLastComment) : [];
+
+    const [commentText, setCommentText] = useState("");
     
     const handleCommentTextChange = (event) => {
         setCommentText(event.target.value);
-    }
+    };
+
+    const handleNextPage = () => {
+        setCurrentPage(prevPage => prevPage + 1);
+    };
+
+    const handlePrevPage = () => {
+        setCurrentPage(prevPage => prevPage - 1);
+    };
 
     const navigate = useNavigate();
 
@@ -126,6 +143,29 @@ const Comments = () => {
                     </Grid>
                 </Grid>
             </div>
+            {/* <div className="comments">
+                {commentsSorted ? 
+                    (currentPageComments.map((comment, index) => (
+                        <div className="Grid_background" style={{marginTop: '1vmax'}} key={index}>
+                            <Grid container spacing={0} sx={{paddingBottom: "2vmax"}}>
+                                <Grid item xs={1} className='' color={"white"}>
+                                    <PersonIcon fontSize='large' style={{color: 'white'}}/>
+                                </Grid>
+                                <Grid item xs={10} className='' color={"white"}>
+                                    <Comment
+                                        userDisplayName={comment.userDisplayName} 
+                                        commentText={comment.commentText} 
+                                        date={comment.creationDate}
+                                        lastModified={comment.lastModifed}
+                                        commentId={comment.commentId}
+                                    />
+                                </Grid>
+                            </Grid>
+                        </div>
+                    ))
+                    ) : (<div/>)      
+                }
+            </div> */}
             <div className="comments">
                 {comments ? 
                     (comments
@@ -153,6 +193,10 @@ const Comments = () => {
                         <div/>
                     )      
                 }
+            </div>
+            <div>
+                <Button disabled={currentPage === 1} onClick={handlePrevPage}>Prev Page</Button>
+                <Button disabled={indexOfLastComment >= comments.length} onClick={handleNextPage}>Next Page</Button>
             </div>
         </Container>
         
